@@ -28,6 +28,8 @@ final class MainViewController: BindableViewController<MainViewModel> {
     }
 
     private func setUpView() {
+        title = "Znajdź miasto"
+        
         searchBar.delegate = self
         searchBar.placeholder = "Wpisz miasto"
                         
@@ -75,8 +77,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        invokeEvent(MainViewModel.Events.chooseCity(row: indexPath.row))
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {        
+        let vc = WeatherCityViewController()
+        vc.viewModel.currentWeather = viewModel.cityListVM[indexPath.row].currentWeather
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

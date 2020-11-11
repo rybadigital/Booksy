@@ -7,6 +7,24 @@
 
 import UIKit
 
+class BindableView<T: BaseViewModel>: UIView, GenericBindable, BindingTarget {
+    
+    weak var viewModel: T?
+        
+    func bind(source: T) {
+        source.bindingTarget = self
+        
+        self.viewModel = source
+    }
+        
+    func viewModelDidUpdate(_ updatedProperty: AnyKeyPath?) { }
+    
+    func invokeEvent(_ event: MyEvent) {
+        viewModel?.handleEvent(event)
+    }
+}
+
+
 class BindableViewController<ViewModel: RootViewModel>: UIViewController, BindingTarget {
     
     let viewModel: ViewModel = ViewModel.init()

@@ -14,6 +14,6 @@ struct CurrentWeather: Codable {
     let sys: Sys?
     let main: Temperature?
     let weather: [Weather]?
-    let visibility: String?
     let coord: Coord?
+    let dt_txt: String?
 }

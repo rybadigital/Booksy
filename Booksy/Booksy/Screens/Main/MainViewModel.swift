@@ -11,8 +11,7 @@ final class MainViewModel: RootViewModel {
     
     enum Events: MyEvent {
         
-        case searchCity(city: String)
-        case chooseCity(row: Int)
+        case searchCity(city: String)        
     }
     
     var cityListVM: [MainViewCollectionViewModel] = [] {
